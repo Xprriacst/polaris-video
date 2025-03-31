@@ -3,415 +3,561 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Polaris - Tarifs</title>
+  <title>ShortsCreator - Forfaits de création de shorts</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      color: #333;
+    :root {
+      --background: 220 100% 81%;
+      --foreground: 244 100% 16%;
+      --muted: 221 95% 71%;
+      --muted-foreground: 244 100% 16%;
+      --popover: 220 100% 99%;
+      --popover-foreground: 244 100% 16%;
+      --card: 220 100% 99%;
+      --card-foreground: 244 100% 16%;
+      --border: 221 95% 71%;
+      --input: 221 95% 71%;
+      --primary: 221 100% 72%;
+      --primary-foreground: 220 100% 99%;
+      --secondary: 220 100% 86%;
+      --secondary-foreground: 244 100% 16%;
+      --accent: 220 100% 86%;
+      --accent-foreground: 244 100% 16%;
+      --destructive: 0 84.2% 60.2%;
+      --destructive-foreground: 60 9.1% 97.8%;
+      --ring: 221 100% 72%;
+      --radius: 0.75rem;
     }
     
-    .header {
+    .______background-clip--text {
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: hsl(220, 100%, 99%);
+      color: hsl(244, 100%, 16%);
+      line-height: 1.5;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    
+    header {
+      padding: 1.5rem 0;
+    }
+    
+    .navbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 50px;
     }
     
     .logo {
-      color: #6495ED;
-      font-size: 28px;
-      font-weight: bold;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: hsl(221, 100%, 72%);
     }
     
-    .navigation {
+    .nav-links {
       display: flex;
-      gap: 30px;
+      gap: 2rem;
     }
     
-    .navigation a {
+    .nav-link {
       text-decoration: none;
-      color: #333;
+      color: hsl(244, 100%, 16%);
+      font-weight: 500;
+    }
+    
+    .hero {
+      padding: 4rem 0;
+      text-align: center;
+    }
+    
+    .hero-title {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      background: linear-gradient(to right, hsl(221, 100%, 72%), hsl(240, 100%, 70%));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: hsl(244, 30%, 40%);
+      max-width: 600px;
+      margin: 0 auto 2rem;
     }
     
     .pricing-container {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      padding: 20px 50px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      padding: 2rem 0;
     }
     
     .pricing-card {
-      flex: 1;
-      border-radius: 10px;
-      padding: 30px;
-      background-color: #f9f9f9;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      background-color: white;
+      border-radius: var(--radius);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
     }
     
-    .card-header {
-      margin-bottom: 20px;
+    .pricing-header {
+      margin-bottom: 1.5rem;
     }
     
-    .package-name {
-      font-size: 22px;
-      font-weight: bold;
-      margin-bottom: 5px;
+    .pricing-name {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
     }
     
-    .package-tag {
-      display: inline-block;
-      padding: 3px 10px;
-      border-radius: 20px;
-      font-size: 12px;
-      margin-left: 10px;
+    .pricing-description {
+      color: hsl(244, 30%, 40%);
+      font-size: 0.875rem;
     }
     
-    .tag-essential {
-      background-color: #e6f0ff;
-      color: #3377ff;
+    .pricing-price {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin: 1rem 0;
     }
     
-    .tag-populaire {
-      background-color: #e6ffe6;
-      color: #339933;
-    }
-    
-    .tag-premium {
-      background-color: #f0e6ff;
-      color: #7733ff;
-    }
-    
-    .price {
-      font-size: 34px;
-      font-weight: bold;
-      margin: 20px 0 5px 0;
-    }
-    
-    .per-month {
-      color: #777;
-      font-size: 16px;
-    }
-    
-    .description {
-      color: #666;
-      margin-bottom: 30px;
+    .pricing-period {
+      font-size: 1rem;
+      color: hsl(244, 30%, 40%);
+      font-weight: normal;
     }
     
     .feature-list {
       list-style: none;
-      padding: 0;
-      margin: 0;
+      margin: 1.5rem 0;
+      flex-grow: 1;
     }
     
     .feature-item {
       display: flex;
       align-items: flex-start;
-      margin-bottom: 15px;
+      margin-bottom: 0.75rem;
     }
     
-    .checkmark {
-      color: #4CAF50;
-      margin-right: 10px;
-      font-weight: bold;
+    .feature-icon {
+      color: hsl(221, 100%, 72%);
+      margin-right: 0.5rem;
+      flex-shrink: 0;
+    }
+    
+    .cta-button {
+      display: inline-block;
+      background-color: hsl(221, 100%, 72%);
+      color: white;
+      font-weight: 500;
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--radius);
+      text-decoration: none;
+      text-align: center;
+      transition: background-color 0.2s;
+    }
+    
+    .cta-button:hover {
+      background-color: hsl(221, 100%, 65%);
+    }
+    
+    .cta-button.secondary {
+      background-color: transparent;
+      color: hsl(221, 100%, 72%);
+      border: 1px solid hsl(221, 100%, 72%);
+    }
+    
+    .cta-button.secondary:hover {
+      background-color: hsl(221, 100%, 95%);
+    }
+    
+    .popular-badge {
+      background-color: hsl(221, 100%, 90%);
+      color: hsl(221, 100%, 50%);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.25rem 0.75rem;
+      border-radius: 1rem;
+      display: inline-block;
+      margin-left: 0.5rem;
+    }
+    
+    .testimonials {
+      padding: 4rem 0;
+      background-color: hsl(220, 100%, 97%);
     }
     
     .section-title {
-      font-weight: bold;
-      margin: 30px 0 15px 0;
+      font-size: 2rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 2rem;
     }
     
-    .checkbox-option {
-      margin: 10px 0;
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    
+    .testimonial-card {
+      background-color: white;
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+    
+    .testimonial-content {
+      margin-bottom: 1rem;
+    }
+    
+    .testimonial-author {
       display: flex;
       align-items: center;
     }
     
-    /* Style de la case à cocher */
-    .checkbox-option input[type="checkbox"] {
-      margin-right: 10px;
-      width: 20px;
-      height: 20px;
+    .author-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 0.75rem;
+      object-fit: cover;
     }
     
-    .total-section {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin: 30px 0;
-      font-weight: bold;
-      font-size: 18px;
+    .author-info {
+      line-height: 1.2;
     }
     
-    .action-button {
-      display: block;
-      width: 100%;
-      padding: 15px;
-      background-color: #6495ED;
+    .author-name {
+      font-weight: 600;
+    }
+    
+    .author-title {
+      font-size: 0.875rem;
+      color: hsl(244, 30%, 40%);
+    }
+    
+    footer {
+      background-color: hsl(244, 100%, 10%);
       color: white;
-      text-align: center;
-      border-radius: 5px;
-      border: none;
-      font-size: 16px;
-      cursor: pointer;
-      margin-top: 20px;
+      padding: 3rem 0;
     }
     
-    .disclaimer {
-      font-size: 11px;
-      color: #999;
-      margin-top: 30px;
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+    }
+    
+    .footer-logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: white;
+    }
+    
+    .footer-column h3 {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+    
+    .footer-links {
+      list-style: none;
+    }
+    
+    .footer-link {
+      margin-bottom: 0.5rem;
+    }
+    
+    .footer-link a {
+      color: hsl(220, 30%, 80%);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    
+    .footer-link a:hover {
+      color: white;
+    }
+    
+    .copyright {
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid hsl(244, 30%, 20%);
       text-align: center;
+      color: hsl(220, 30%, 80%);
+      font-size: 0.875rem;
+    }
+    
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2.25rem;
+      }
+      
+      .pricing-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .testimonial-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="header">
-    <div class="logo">Polaris</div>
-    <div class="navigation">
-      <a href="#">Accueil</a>
-      <a href="#">Tarifs</a>
-    </div>
-  </div>
-  
-  <div class="pricing-container">
-    <!-- Pack Demarrage -->
-    <div class="pricing-card" data-base="160">
-      <div class="card-header">
-        <div>
-          <span class="package-name">Pack Demarrage</span>
-          <span class="package-tag tag-essential">Essentiel</span>
+  <header>
+    <div class="container">
+      <nav class="navbar">
+        <div class="logo">ShortsCreator</div>
+        <div class="nav-links">
+          <a href="#" class="nav-link">Accueil</a>
+          <a href="#pricing" class="nav-link">Forfaits</a>
+          <a href="#testimonials" class="nav-link">Témoignages</a>
+          <a href="#contact" class="nav-link">Contact</a>
         </div>
-        <div class="price">160€<span class="per-month">/mois</span></div>
-        <div class="description">Parfait pour démarrer votre présence en ligne</div>
-      </div>
-      
-      <ul class="feature-list">
-        <li class="feature-item">
-          <span class="checkmark">✓</span>
-          <div>8 vidéos courtes/mois*</div>
-        </li>
-        <li class="feature-item">
-          <span class="checkmark">✓</span>
-          <div>Sélection des moments clés</div>
-        </li>
-        <li class="feature-item">
-          <span class="checkmark">✓</span>
-          <div>Adaptation au format vertical</div>
-        </li>
-        <li class="feature-item">
-          <span class="checkmark">✓</span>
-          <div>Montage professionnel</div>
-        </li>
-        <li class="feature-item">
-          <span class="checkmark">✓</span>
-          <div>Sous-titres inclus</div>
-        </li>
-        <li class="feature-item">
-          <span class="checkmark">✓</span>
-          <div>Musique adaptée</div>
-        </li>
-        <li class="feature-item">
-          <span class="checkmark">✓</span>
-          <div>Titre à la vidéo</div>
-        </li>
-        <li class="feature-item">
-          <span class="checkmark">✓</span>
-          <div>Vidéo supplémentaire : 20€</div>
-        </li>
-      </ul>
-      
-      <div class="section-title">Création et gestion de comptes</div>
-      <div>Nous créons pour vous de nouveaux comptes sur les réseaux sociaux et effectuons les publications à votre place (Tiktok, Youtube Short et Instagram Reels)</div>
-      
-      <div class="checkbox-option">
-        <input type="checkbox" class="account-checkbox" data-extra="60">
-        <span>1 compte (+60€/mois)</span>
-      </div>
-      <div class="checkbox-option">
-        <input type="checkbox" class="account-checkbox" data-extra="100">
-        <span>2 comptes (+100€/mois)</span>
-      </div>
-      <div class="checkbox-option">
-        <input type="checkbox" class="account-checkbox" data-extra="140">
-        <span>3 comptes (+140€/mois)</span>
-      </div>
-      
-      <div class="total-section">
-        <span>Total mensuel</span>
-        <span class="total-price">160€</span>
-      </div>
-      
-      <button class="action-button">Choisir ce forfait</button>
+      </nav>
     </div>
-    
-    <!-- Pack Croissance -->
-    <div class="pricing-card" data-base="280">
-      <div class="card-header">
-        <div>
-          <span class="package-name">Pack Croissance</span>
-          <span class="package-tag tag-populaire">Populaire</span>
-        </div>
-        <div class="price">280€<span class="per-month">/mois</span></div>
-        <div class="description">Idéal pour développer votre communauté</div>
-      </div>
-      
-      <ul class="feature-list">
-        <li class="feature-item">
-          <span class="checkmark">✓</span>
-          <div>16 vidéos courtes/mois*</div>
-        </li>
-        <li class="feature-item">
-          <span class="checkmark">✓</span>
-          <div>Sélection des moments clés</div>
-        </li>
-        <li class="feature-item">
-          <span class="checkmark">✓</span>
-          <div>Adaptation au format vertical</div>
-        </li>
-        <li class="feature-item">
-          <span class="checkmark">✓</span>
-          <div>Montage professionnel</div>
-        </li>
-        <li class="feature-item">
-          <span class="checkmark">✓</span>
-          <div>Sous-titres inclus</div>
-        </li>
-        <li class="feature-item">
-          <span class="checkmark">✓</span>
-          <div>Musique adaptée</div>
-        </li>
-        <li class="feature-item">
-          <span class="checkmark">✓</span>
-          <div>Titre à la vidéo</div>
-        </li>
-        <li class="feature-item">
-          <span class="checkmark">✓</span>
-          <div>Vidéo supplémentaire : 17.5€</div>
-        </li>
-      </ul>
-      
-      <div class="section-title">Création et gestion de comptes</div>
-      <div>Nous créons pour vous de nouveaux comptes sur les réseaux sociaux et effectuons les publications à votre place (Tiktok, Youtube Short et Instagram Reels)</div>
-      
-      <div class="checkbox-option">
-        <input type="checkbox" class="account-checkbox" data-extra="90">
-        <span>1 compte (+90€/mois)</span>
-      </div>
-      <div class="checkbox-option">
-        <input type="checkbox" class="account-checkbox" data-extra="140">
-        <span>2 comptes (+140€/mois)</span>
-      </div>
-      <div class="checkbox-option">
-        <input type="checkbox" class="account-checkbox" data-extra="180">
-        <span>3 comptes (+180€/mois)</span>
-      </div>
-      
-      <div class="total-section">
-        <span>Total mensuel</span>
-        <span class="total-price">280€</span>
-      </div>
-      
-      <button class="action-button">Choisir ce forfait</button>
-    </div>
-    
-    <!-- Pack Pro -->
-    <div class="pricing-card" data-base="480">
-      <div class="card-header">
-        <div>
-          <span class="package-name">Pack Pro</span>
-          <span class="package-tag tag-premium">Premium</span>
-        </div>
-        <div class="price">480€<span class="per-month">/mois</span></div>
-        <div class="description">Solution complète pour les professionnels</div>
-      </div>
-      
-      <ul class="feature-list">
-        <li class="feature-item">
-          <span class="checkmark">✓</span>
-          <div>32 vidéos courtes/mois*</div>
-        </li>
-        <li class="feature-item">
-          <span class="checkmark">✓</span>
-          <div>Sélection des moments clés</div>
-        </li>
-        <li class="feature-item">
-          <span class="checkmark">✓</span>
-          <div>Adaptation au format vertical</div>
-        </li>
-        <li class="feature-item">
-          <span class="checkmark">✓</span>
-          <div>Montage professionnel</div>
-        </li>
-        <li class="feature-item">
-          <span class="checkmark">✓</span>
-          <div>Sous-titres inclus</div>
-        </li>
-        <li class="feature-item">
-          <span class="checkmark">✓</span>
-          <div>Musique adaptée</div>
-        </li>
-        <li class="feature-item">
-          <span class="checkmark">✓</span>
-          <div>Titre à la vidéo</div>
-        </li>
-        <li class="feature-item">
-          <span class="checkmark">✓</span>
-          <div>Vidéo supplémentaire : 15€</div>
-        </li>
-      </ul>
-      
-      <div class="section-title">Création et gestion de comptes</div>
-      <div>Nous créons pour vous de nouveaux comptes sur les réseaux sociaux et effectuons les publications à votre place (Tiktok, Youtube Short et Instagram Reels)</div>
-      
-      <div class="checkbox-option">
-        <input type="checkbox" class="account-checkbox" data-extra="120">
-        <span>1 compte (+120€/mois)</span>
-      </div>
-      <div class="checkbox-option">
-        <input type="checkbox" class="account-checkbox" data-extra="180">
-        <span>2 comptes (+180€/mois)</span>
-      </div>
-      <div class="checkbox-option">
-        <input type="checkbox" class="account-checkbox" data-extra="220">
-        <span>3 comptes (+220€/mois)</span>
-      </div>
-      
-      <div class="total-section">
-        <span>Total mensuel</span>
-        <span class="total-price">480€</span>
-      </div>
-      
-      <button class="action-button">Choisir ce forfait</button>
-    </div>
-  </div>
-  
-  <div class="disclaimer">
-    *sous réserve de disposer de suffisamment de contenu vidéo original
-  </div>
-  
-  <script>
-    // Pour chaque carte, on récupère le prix de base et on met à jour le total à chaque changement de case à cocher
-    document.querySelectorAll('.pricing-card').forEach(card => {
-      const basePrice = parseFloat(card.getAttribute('data-base'));
-      const totalPriceElem = card.querySelector('.total-price');
-      const checkboxes = card.querySelectorAll('.account-checkbox');
+  </header>
 
-      function updateTotal() {
-        let extraTotal = 0;
-        checkboxes.forEach(chk => {
-          if (chk.checked) {
-            extraTotal += parseFloat(chk.getAttribute('data-extra'));
-          }
-        });
-        totalPriceElem.textContent = (basePrice + extraTotal) + '€';
-      }
+  <section class="hero">
+    <div class="container">
+      <h1 class="hero-title">Créez des shorts qui captent l'attention</h1>
+      <p class="hero-subtitle">Transformez votre contenu en vidéos courtes engageantes pour TikTok, Instagram Reels et YouTube Shorts</p>
+      <a href="#pricing" class="cta-button">Voir nos forfaits</a>
+    </div>
+  </section>
+
+  <section id="pricing" class="pricing">
+    <div class="container">
+      <h2 class="section-title">Nos forfaits</h2>
+      <div class="pricing-container">
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <h3 class="pricing-name">Démarrage</h3>
+            <p class="pricing-description">Parfait pour commencer votre présence sur les plateformes de shorts</p>
+          </div>
+          <div class="pricing-price">160€ <span class="pricing-period">/mois</span></div>
+          <ul class="feature-list">
+            <li class="feature-item">
+              <span class="feature-icon">✓</span>
+              <span>8 vidéos courtes par mois</span>
+            </li>
+            <li class="feature-item">
+              <span class="feature-icon">✓</span>
+              <span>Sélection des moments clés</span>
+            </li>
+            <li class="feature-item">
+              <span class="feature-icon">✓</span>
+              <span>Adaptation au format vertical</span>
+            </li>
+            <li class="feature-item">
+              <span class="feature-icon">✓</span>
+              <span>Sous-titres simples</span>
+            </li>
+            <li class="feature-item">
+              <span class="feature-icon">✓</span>
+              <span>Livraison en 48h</span>
+            </li>
+          </ul>
+          <a href="#contact" class="cta-button secondary">Choisir ce forfait</a>
+        </div>
+
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <h3 class="pricing-name">Croissance <span class="popular-badge">Populaire</span></h3>
+            <p class="pricing-description">Idéal pour développer votre audience et augmenter l'engagement</p>
+          </div>
+          <div class="pricing-price">280€ <span class="pricing-period">/mois</span></div>
+          <ul class="feature-list">
+            <li class="feature-item">
+              <span class="feature-icon">✓</span>
+              <span>15 vidéos courtes par mois</span>
+            </li>
+            <li class="feature-item">
+              <span class="feature-icon">✓</span>
+              <span>Sélection des moments clés</span>
+            </li>
+            <li class="feature-item">
+              <span class="feature-icon">✓</span>
+              <span>Adaptation au format vertical</span>
+            </li>
+            <li class="feature-item">
+              <span class="feature-icon">✓</span>
+              <span>Sous-titres stylisés</span>
+            </li>
+            <li class="feature-item">
+              <span class="feature-icon">✓</span>
+              <span>Effets visuels basiques</span>
+            </li>
+            <li class="feature-item">
+              <span class="feature-icon">✓</span>
+              <span>Musique de fond</span>
+            </li>
+            <li class="feature-item">
+              <span class="feature-icon">✓</span>
+              <span>Livraison en 24h</span>
+            </li>
+          </ul>
+          <a href="#contact" class="cta-button">Choisir ce forfait</a>
+        </div>
+
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <h3 class="pricing-name">Professionnel</h3>
+            <p class="pricing-description">Solution complète pour une présence premium sur toutes les plateformes</p>
+          </div>
+          <div class="pricing-price">480€ <span class="pricing-period">/mois</span></div>
+          <ul class="feature-list">
+            <li class="feature-item">
+              <span class="feature-icon">✓</span>
+              <span>25 vidéos courtes par mois</span>
+            </li>
+            <li class="feature-item">
+              <span class="feature-icon">✓</span>
+              <span>Sélection des moments clés</span>
+            </li>
+            <li class="feature-item">
+              <span class="feature-icon">✓</span>
+              <span>Adaptation au format vertical</span>
+            </li>
+            <li class="feature-item">
+              <span class="feature-icon">✓</span>
+              <span>Sous-titres premium</span>
+            </li>
+            <li class="feature-item">
+              <span class="feature-icon">✓</span>
+              <span>Effets visuels avancés</span>
+            </li>
+            <li class="feature-item">
+              <span class="feature-icon">✓</span>
+              <span>Musique personnalisée</span>
+            </li>
+            <li class="feature-item">
+              <span class="feature-icon">✓</span>
+              <span>Animations sur mesure</span>
+            </li>
+            <li class="feature-item">
+              <span class="feature-icon">✓</span>
+              <span>Stratégie de contenu</span>
+            </li>
+            <li class="feature-item">
+              <span class="feature-icon">✓</span>
+              <span>Livraison prioritaire</span>
+            </li>
+          </ul>
+          <a href="#contact" class="cta-button secondary">Choisir ce forfait</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="testimonials" class="testimonials">
+    <div class="container">
+      <h2 class="section-title">Ce que disent nos clients</h2>
+      <div class="testimonial-grid">
+        <div class="testimonial-card">
+          <p class="testimonial-content">"ShortsCreator a transformé ma présence sur TikTok. J'ai gagné plus de 10 000 abonnés en seulement 2 mois grâce à leurs vidéos de qualité professionnelle."</p>
+          <div class="testimonial-author">
+            <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Sophie Martin" class="author-avatar">
+            <div class="author-info">
+              <div class="author-name">Sophie Martin</div>
+              <div class="author-title">Coach Fitness</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-card">
+          <p class="testimonial-content">"Le rapport qualité-prix est imbattable. Leurs shorts ont multiplié par 5 l'engagement sur mes réseaux sociaux et ont considérablement augmenté mes ventes."</p>
+          <div class="testimonial-author">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Thomas Dubois" class="author-avatar">
+            <div class="author-info">
+              <div class="author-name">Thomas Dubois</div>
+              <div class="author-title">E-commerçant</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-card">
+          <p class="testimonial-content">"Je n'avais jamais réussi à percer sur YouTube avant de découvrir ShortsCreator. Leurs vidéos courtes ont attiré l'attention sur ma chaîne principale. Un investissement rentable !"</p>
+          <div class="testimonial-author">
+            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Léa Bernard" class="author-avatar">
+            <div class="author-info">
+              <div class="author-name">Léa Bernard</div>
+              <div class="author-title">YouTubeuse</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="container" style="text-align: center; padding: 4rem 0;">
+      <h2 class="section-title">Prêt à booster votre présence en ligne ?</h2>
+      <p style="max-width: 600px; margin: 0 auto 2rem;">Contactez-nous dès aujourd'hui pour discuter de vos besoins et commencer à créer des shorts qui captent l'attention</p>
+      <a href="mailto:contact@shortscreator.com" class="cta-button">Nous contacter</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-column">
+          <div class="footer-logo">ShortsCreator</div>
+          <p>Transformez votre contenu en vidéos courtes engageantes pour toutes les plateformes.</p>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Liens rapides</h3>
+          <ul class="footer-links">
+            <li class="footer-link"><a href="#">Accueil</a></li>
+            <li class="footer-link"><a href="#pricing">Forfaits</a></li>
+            <li class="footer-link"><a href="#testimonials">Témoignages</a></li>
+            <li class="footer-link"><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Ressources</h3>
+          <ul class="footer-links">
+            <li class="footer-link"><a href="#">Blog</a></li>
+            <li class="footer-link"><a href="#">FAQ</a></li>
+            <li class="footer-link"><a href="#">Tutoriels</a></li>
+            <li class="footer-link"><a href="#">Études de cas</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Contact</h3>
+          <ul class="footer-links">
+            <li class="footer-link"><a href="mailto:contact@shortscreator.com">contact@shortscreator.com</a></li>
+            <li class="footer-link"><a href="tel:+33123456789">+33 1 23 45 67 89</a></li>
+            <li class="footer-link"><a href="#">Paris, France</a></li>
+          </ul>
+        </div>
+      </div>
       
-      checkboxes.forEach(chk => {
-        chk.addEventListener('change', updateTotal);
-      });
-    });
-  </script>
+      <div class="copyright">
+        &copy; 2025 ShortsCreator. Tous droits réservés.
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
