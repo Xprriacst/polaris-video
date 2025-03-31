@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Polaris - Tarifs</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+    
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 50px;
+    }
+    
+    .logo {
+      color: #6495ED;
+      font-size: 28px;
+      font-weight: bold;
+    }
+    
+    .navigation {
+      display: flex;
+      gap: 30px;
+    }
+    
+    .navigation a {
+      text-decoration: none;
+      color: #333;
+    }
+    
+    .pricing-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px 50px;
+    }
+    
+    .pricing-card {
+      flex: 1;
+      border-radius: 10px;
+      padding: 30px;
+      background-color: #f9f9f9;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    
+    .card-header {
+      margin-bottom: 20px;
+    }
+    
+    .package-name {
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    
+    .package-tag {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      margin-left: 10px;
+    }
+    
+    .tag-essential {
+      background-color: #e6f0ff;
+      color: #3377ff;
+    }
+    
+    .tag-populaire {
+      background-color: #e6ffe6;
+      color: #339933;
+    }
+    
+    .tag-premium {
+      background-color: #f0e6ff;
+      color: #7733ff;
+    }
+    
+    .price {
+      font-size: 34px;
+      font-weight: bold;
+      margin: 20px 0 5px 0;
+    }
+    
+    .per-month {
+      color: #777;
+      font-size: 16px;
+    }
+    
+    .description {
+      color: #666;
+      margin-bottom: 30px;
+    }
+    
+    .feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 15px;
+    }
+    
+    .checkmark {
+      color: #4CAF50;
+      margin-right: 10px;
+      font-weight: bold;
+    }
+    
+    .section-title {
+      font-weight: bold;
+      margin: 30px 0 15px 0;
+    }
+    
+    .checkbox-option {
+      margin: 10px 0;
+      display: flex;
+      align-items: center;
+    }
+    
+    /* Style de la case à cocher */
+    .checkbox-option input[type="checkbox"] {
+      margin-right: 10px;
+      width: 20px;
+      height: 20px;
+    }
+    
+    .total-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 30px 0;
+      font-weight: bold;
+      font-size: 18px;
+    }
+    
+    .action-button {
+      display: block;
+      width: 100%;
+      padding: 15px;
+      background-color: #6495ED;
+      color: white;
+      text-align: center;
+      border-radius: 5px;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    
+    .disclaimer {
+      font-size: 11px;
+      color: #999;
+      margin-top: 30px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="logo">Polaris</div>
+    <div class="navigation">
+      <a href="#">Accueil</a>
+      <a href="#">Tarifs</a>
+    </div>
+  </div>
+  
+  <div class="pricing-container">
+    <!-- Pack Demarrage -->
+    <div class="pricing-card" data-base="160">
+      <div class="card-header">
+        <div>
+          <span class="package-name">Pack Demarrage</span>
+          <span class="package-tag tag-essential">Essentiel</span>
+        </div>
+        <div class="price">160€<span class="per-month">/mois</span></div>
+        <div class="description">Parfait pour démarrer votre présence en ligne</div>
+      </div>
+      
+      <ul class="feature-list">
+        <li class="feature-item">
+          <span class="checkmark">✓</span>
+          <div>8 vidéos courtes/mois*</div>
+        </li>
+        <li class="feature-item">
+          <span class="checkmark">✓</span>
+          <div>Sélection des moments clés</div>
+        </li>
+        <li class="feature-item">
+          <span class="checkmark">✓</span>
+          <div>Adaptation au format vertical</div>
+        </li>
+        <li class="feature-item">
+          <span class="checkmark">✓</span>
+          <div>Montage professionnel</div>
+        </li>
+        <li class="feature-item">
+          <span class="checkmark">✓</span>
+          <div>Sous-titres inclus</div>
+        </li>
+        <li class="feature-item">
+          <span class="checkmark">✓</span>
+          <div>Musique adaptée</div>
+        </li>
+        <li class="feature-item">
+          <span class="checkmark">✓</span>
+          <div>Titre à la vidéo</div>
+        </li>
+        <li class="feature-item">
+          <span class="checkmark">✓</span>
+          <div>Vidéo supplémentaire : 20€</div>
+        </li>
+      </ul>
+      
+      <div class="section-title">Création et gestion de comptes</div>
+      <div>Nous créons pour vous de nouveaux comptes sur les réseaux sociaux et effectuons les publications à votre place (Tiktok, Youtube Short et Instagram Reels)</div>
+      
+      <div class="checkbox-option">
+        <input type="checkbox" class="account-checkbox" data-extra="60">
+        <span>1 compte (+60€/mois)</span>
+      </div>
+      <div class="checkbox-option">
+        <input type="checkbox" class="account-checkbox" data-extra="100">
+        <span>2 comptes (+100€/mois)</span>
+      </div>
+      <div class="checkbox-option">
+        <input type="checkbox" class="account-checkbox" data-extra="140">
+        <span>3 comptes (+140€/mois)</span>
+      </div>
+      
+      <div class="total-section">
+        <span>Total mensuel</span>
+        <span class="total-price">160€</span>
+      </div>
+      
+      <button class="action-button">Choisir ce forfait</button>
+    </div>
+    
+    <!-- Pack Croissance -->
+    <div class="pricing-card" data-base="280">
+      <div class="card-header">
+        <div>
+          <span class="package-name">Pack Croissance</span>
+          <span class="package-tag tag-populaire">Populaire</span>
+        </div>
+        <div class="price">280€<span class="per-month">/mois</span></div>
+        <div class="description">Idéal pour développer votre communauté</div>
+      </div>
+      
+      <ul class="feature-list">
+        <li class="feature-item">
+          <span class="checkmark">✓</span>
+          <div>16 vidéos courtes/mois*</div>
+        </li>
+        <li class="feature-item">
+          <span class="checkmark">✓</span>
+          <div>Sélection des moments clés</div>
+        </li>
+        <li class="feature-item">
+          <span class="checkmark">✓</span>
+          <div>Adaptation au format vertical</div>
+        </li>
+        <li class="feature-item">
+          <span class="checkmark">✓</span>
+          <div>Montage professionnel</div>
+        </li>
+        <li class="feature-item">
+          <span class="checkmark">✓</span>
+          <div>Sous-titres inclus</div>
+        </li>
+        <li class="feature-item">
+          <span class="checkmark">✓</span>
+          <div>Musique adaptée</div>
+        </li>
+        <li class="feature-item">
+          <span class="checkmark">✓</span>
+          <div>Titre à la vidéo</div>
+        </li>
+        <li class="feature-item">
+          <span class="checkmark">✓</span>
+          <div>Vidéo supplémentaire : 17.5€</div>
+        </li>
+      </ul>
+      
+      <div class="section-title">Création et gestion de comptes</div>
+      <div>Nous créons pour vous de nouveaux comptes sur les réseaux sociaux et effectuons les publications à votre place (Tiktok, Youtube Short et Instagram Reels)</div>
+      
+      <div class="checkbox-option">
+        <input type="checkbox" class="account-checkbox" data-extra="90">
+        <span>1 compte (+90€/mois)</span>
+      </div>
+      <div class="checkbox-option">
+        <input type="checkbox" class="account-checkbox" data-extra="140">
+        <span>2 comptes (+140€/mois)</span>
+      </div>
+      <div class="checkbox-option">
+        <input type="checkbox" class="account-checkbox" data-extra="180">
+        <span>3 comptes (+180€/mois)</span>
+      </div>
+      
+      <div class="total-section">
+        <span>Total mensuel</span>
+        <span class="total-price">280€</span>
+      </div>
+      
+      <button class="action-button">Choisir ce forfait</button>
+    </div>
+    
+    <!-- Pack Pro -->
+    <div class="pricing-card" data-base="480">
+      <div class="card-header">
+        <div>
+          <span class="package-name">Pack Pro</span>
+          <span class="package-tag tag-premium">Premium</span>
+        </div>
+        <div class="price">480€<span class="per-month">/mois</span></div>
+        <div class="description">Solution complète pour les professionnels</div>
+      </div>
+      
+      <ul class="feature-list">
+        <li class="feature-item">
+          <span class="checkmark">✓</span>
+          <div>32 vidéos courtes/mois*</div>
+        </li>
+        <li class="feature-item">
+          <span class="checkmark">✓</span>
+          <div>Sélection des moments clés</div>
+        </li>
+        <li class="feature-item">
+          <span class="checkmark">✓</span>
+          <div>Adaptation au format vertical</div>
+        </li>
+        <li class="feature-item">
+          <span class="checkmark">✓</span>
+          <div>Montage professionnel</div>
+        </li>
+        <li class="feature-item">
+          <span class="checkmark">✓</span>
+          <div>Sous-titres inclus</div>
+        </li>
+        <li class="feature-item">
+          <span class="checkmark">✓</span>
+          <div>Musique adaptée</div>
+        </li>
+        <li class="feature-item">
+          <span class="checkmark">✓</span>
+          <div>Titre à la vidéo</div>
+        </li>
+        <li class="feature-item">
+          <span class="checkmark">✓</span>
+          <div>Vidéo supplémentaire : 15€</div>
+        </li>
+      </ul>
+      
+      <div class="section-title">Création et gestion de comptes</div>
+      <div>Nous créons pour vous de nouveaux comptes sur les réseaux sociaux et effectuons les publications à votre place (Tiktok, Youtube Short et Instagram Reels)</div>
+      
+      <div class="checkbox-option">
+        <input type="checkbox" class="account-checkbox" data-extra="120">
+        <span>1 compte (+120€/mois)</span>
+      </div>
+      <div class="checkbox-option">
+        <input type="checkbox" class="account-checkbox" data-extra="180">
+        <span>2 comptes (+180€/mois)</span>
+      </div>
+      <div class="checkbox-option">
+        <input type="checkbox" class="account-checkbox" data-extra="220">
+        <span>3 comptes (+220€/mois)</span>
+      </div>
+      
+      <div class="total-section">
+        <span>Total mensuel</span>
+        <span class="total-price">480€</span>
+      </div>
+      
+      <button class="action-button">Choisir ce forfait</button>
+    </div>
+  </div>
+  
+  <div class="disclaimer">
+    *sous réserve de disposer de suffisamment de contenu vidéo original
+  </div>
+  
+  <script>
+    // Pour chaque carte, on récupère le prix de base et on met à jour le total à chaque changement de case à cocher
+    document.querySelectorAll('.pricing-card').forEach(card => {
+      const basePrice = parseFloat(card.getAttribute('data-base'));
+      const totalPriceElem = card.querySelector('.total-price');
+      const checkboxes = card.querySelectorAll('.account-checkbox');
+
+      function updateTotal() {
+        let extraTotal = 0;
+        checkboxes.forEach(chk => {
+          if (chk.checked) {
+            extraTotal += parseFloat(chk.getAttribute('data-extra'));
+          }
+        });
+        totalPriceElem.textContent = (basePrice + extraTotal) + '€';
+      }
+      
+      checkboxes.forEach(chk => {
+        chk.addEventListener('change', updateTotal);
+      });
+    });
+  </script>
+</body>
+</html>
