@@ -1,0 +1,16 @@
+{
+  "name": "polaris-video",
+  "version": "1.0.0",
+  "description": "ShortsCreator - Service de création de vidéos courtes",
+  "main": "index.js",
+  "scripts": {
+    "dev": "netlify dev",
+    "build": "netlify build"
+  },
+  "dependencies": {
+    "stripe": "^13.4.0"
+  },
+  "devDependencies": {
+    "netlify-cli": "^17.10.0"
+  }
+}

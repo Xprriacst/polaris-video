@@ -376,7 +376,7 @@
               <span>Livraison en 48h</span>
             </li>
           </ul>
-          <a href="#contact" class="cta-button secondary">Choisir ce forfait</a>
+          <a href="#" class="cta-button secondary" data-plan="demarrage">Choisir ce forfait</a>
         </div>
 
         <div class="pricing-card">
@@ -415,7 +415,7 @@
               <span>Livraison en 24h</span>
             </li>
           </ul>
-          <a href="#contact" class="cta-button">Choisir ce forfait</a>
+          <a href="#" class="cta-button" data-plan="croissance">Choisir ce forfait</a>
         </div>
 
         <div class="pricing-card">
@@ -462,7 +462,7 @@
               <span>Livraison prioritaire</span>
             </li>
           </ul>
-          <a href="#contact" class="cta-button secondary">Choisir ce forfait</a>
+          <a href="#" class="cta-button secondary" data-plan="professionnel">Choisir ce forfait</a>
         </div>
       </div>
     </div>
@@ -500,18 +500,18 @@
             <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Léa Bernard" class="author-avatar">
             <div class="author-info">
               <div class="author-name">Léa Bernard</div>
-              <div class="author-title">YouTubeuse</div>
+              <div class="author-title">Créatrice de contenu</div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
-
+  
   <section id="contact" class="contact">
-    <div class="container" style="text-align: center; padding: 4rem 0;">
-      <h2 class="section-title">Prêt à booster votre présence en ligne ?</h2>
-      <p style="max-width: 600px; margin: 0 auto 2rem;">Contactez-nous dès aujourd'hui pour discuter de vos besoins et commencer à créer des shorts qui captent l'attention</p>
+    <div class="container">
+      <h2 class="section-title">Contactez-nous</h2>
+      <p class="contact-subtitle">Une question ? Besoin d'un forfait sur mesure ? Contactez-nous !</p>
       <a href="mailto:contact@shortscreator.com" class="cta-button">Nous contacter</a>
     </div>
   </section>
@@ -521,7 +521,7 @@
       <div class="footer-grid">
         <div class="footer-column">
           <div class="footer-logo">ShortsCreator</div>
-          <p>Transformez votre contenu en vidéos courtes engageantes pour toutes les plateformes.</p>
+          <p>Transformez votre contenu en vidéos courtes engageantes pour tous les réseaux sociaux.</p>
         </div>
         
         <div class="footer-column">
@@ -535,21 +535,11 @@
         </div>
         
         <div class="footer-column">
-          <h3>Ressources</h3>
-          <ul class="footer-links">
-            <li class="footer-link"><a href="#">Blog</a></li>
-            <li class="footer-link"><a href="#">FAQ</a></li>
-            <li class="footer-link"><a href="#">Tutoriels</a></li>
-            <li class="footer-link"><a href="#">Études de cas</a></li>
-          </ul>
-        </div>
-        
-        <div class="footer-column">
           <h3>Contact</h3>
           <ul class="footer-links">
             <li class="footer-link"><a href="mailto:contact@shortscreator.com">contact@shortscreator.com</a></li>
             <li class="footer-link"><a href="tel:+33123456789">+33 1 23 45 67 89</a></li>
-            <li class="footer-link"><a href="#">Paris, France</a></li>
+            <li class="footer-link">Paris, France</li>
           </ul>
         </div>
       </div>
@@ -559,5 +549,76 @@
       </div>
     </div>
   </footer>
+  <script src="https://js.stripe.com/v3/"></script>
+  <script>
+    // Initialiser Stripe avec la clé publique
+    // Remplacez cette clé par votre clé publique Stripe réelle en production
+    const stripe = Stripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
+    
+    // Fonction pour gérer le clic sur les boutons de forfait
+    async function handlePricingButtonClick(planName) {
+      try {
+        // Afficher un indicateur de chargement
+        const button = document.querySelector(`[data-plan="${planName}"]`);
+        const originalText = button.textContent;
+        button.textContent = 'Chargement...';
+        button.disabled = true;
+        
+        // Créer une session de paiement via la fonction Netlify
+        const response = await fetch('/.netlify/functions/create-checkout-session', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            planName: planName
+          }),
+        });
+        
+        if (!response.ok) {
+          throw new Error('Erreur lors de la création de la session de paiement');
+        }
+        
+        const session = await response.json();
+        
+        // Rediriger vers la page de paiement Stripe
+        stripe.redirectToCheckout({
+          sessionId: session.id
+        }).then(function (result) {
+          if (result.error) {
+            // En cas d'erreur, afficher le message d'erreur
+            alert(result.error.message);
+            button.textContent = originalText;
+            button.disabled = false;
+          }
+        });
+      } catch (error) {
+        console.error('Erreur:', error);
+        alert('Une erreur est survenue. Veuillez réessayer plus tard.');
+        
+        // Réinitialiser le bouton
+        const button = document.querySelector(`[data-plan="${planName}"]`);
+        if (button) {
+          button.textContent = 'Choisir ce forfait';
+          button.disabled = false;
+        }
+      }
+    }
+    
+    // Ajouter des écouteurs d'événements aux boutons de forfait
+    document.addEventListener('DOMContentLoaded', function() {
+      const pricingButtons = document.querySelectorAll('.pricing-card .cta-button');
+      
+      pricingButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+          e.preventDefault();
+          const planName = this.getAttribute('data-plan');
+          if (planName) {
+            handlePricingButtonClick(planName);
+          }
+        });
+      });
+    });
+  </script>
 </body>
 </html>
